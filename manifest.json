@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "DrawVinism 🧬 - Diagram Version Control",
+  "version": "1.0",
+  "description": "Survival of the fittest diagram: Embedded revision tracking for FAIR-compliant scientific modeling.",
+  "content_scripts": [
+    {
+      "matches": ["https://app.diagrams.net/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": []
+}
