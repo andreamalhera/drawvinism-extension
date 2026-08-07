@@ -1,5 +1,5 @@
 /**
- * DrawWinism 🧬
+ * DrawVinism 🧬
  * Survival of the fittest diagram — Embedded Revision Control for draw.io
  */
 Draw.loadPlugin(function(ui) {
@@ -7,8 +7,8 @@ Draw.loadPlugin(function(ui) {
     ui.editor.graph.model.revisions = ui.editor.graph.model.revisions || [];
 
     // Action 1: Evolve (Create a revision snapshot)
-    ui.actions.addAction('drawWinismEvolve', function() {
-        var name = prompt('[DrawWinism] Enter Evolution Stage Label (e.g., v1.2 - Post Peer-Review Revision):');
+    ui.actions.addAction('drawVinismEvolve', function() {
+        var name = prompt('[DrawVinism] Enter Evolution Stage Label (e.g., v1.2 - Post Peer-Review Revision):');
         if (!name) return;
 
         // Extract current diagram XML state
@@ -25,14 +25,14 @@ Draw.loadPlugin(function(ui) {
         };
 
         ui.editor.graph.model.revisions.push(rev);
-        alert('🧬 [DrawWinism] Evolution stage captured in file metadata!');
+        alert('🧬 [DrawVinism] Evolution stage captured in file metadata!');
     });
 
     // Action 2: Inspect Evolutionary History (View / Restore a snapshot)
-    ui.actions.addAction('drawWinismHistory', function() {
+    ui.actions.addAction('drawVinismHistory', function() {
         var revs = ui.editor.graph.model.revisions;
         if (!revs || revs.length === 0) {
-            alert('🧬 [DrawWinism] No evolutionary stages recorded in this diagram yet.');
+            alert('🧬 [DrawVinism] No evolutionary stages recorded in this diagram yet.');
             return;
         }
 
@@ -40,7 +40,7 @@ Draw.loadPlugin(function(ui) {
             return idx + ': ' + r.label + ' (' + new Date(r.timestamp).toLocaleString() + ')';
         }).join('\n');
 
-        var choice = prompt('[DrawWinism] Select Evolution Index to Revert To:\n\n' + listText);
+        var choice = prompt('[DrawVinism] Select Evolution Index to Revert To:\n\n' + listText);
         if (choice !== null && revs[choice]) {
             var selectedXml = revs[choice].data;
             var doc = mxUtils.parseXml(selectedXml);
@@ -52,21 +52,21 @@ Draw.loadPlugin(function(ui) {
             } finally {
                 ui.editor.graph.getModel().endUpdate();
             }
-            alert('🧬 [DrawWinism] Diagram reverted to stage: ' + revs[choice].label);
+            alert('🧬 [DrawVinism] Diagram reverted to stage: ' + revs[choice].label);
         }
     });
 
-    // Action 3: About DrawWinism
-    ui.actions.addAction('drawWinismAbout', function() {
-        alert('DrawWinism 🧬 v1.0\n\n' +
+    // Action 3: About DrawVinism
+    ui.actions.addAction('drawVinismAbout', function() {
+        alert('DrawVinism 🧬 v1.0\n\n' +
               'Survival of the fittest diagram.\n' +
               'Embedded revision tracking for FAIR-compliant scientific modeling, ' +
               'transparent peer review, and academic research methods education.');
     });
 
-    // Inject dedicated "DrawWinism" Submenu into draw.io Extras Menu
-    ui.menus.put('drawWinismSubmenu', new Menu(mxUtils.bind(ui, function(menuManager, parent) {
-        ui.menus.addMenuItems(menuManager, ['drawWinismEvolve', 'drawWinismHistory', '-', 'drawWinismAbout'], parent);
+    // Inject dedicated "DrawVinism" Submenu into draw.io Extras Menu
+    ui.menus.put('drawVinismSubmenu', new Menu(mxUtils.bind(ui, function(menuManager, parent) {
+        ui.menus.addMenuItems(menuManager, ['drawVinismEvolve', 'drawVinismHistory', '-', 'drawVinismAbout'], parent);
     })));
 
     var extrasMenu = ui.menus.get('extras');
@@ -75,6 +75,6 @@ Draw.loadPlugin(function(ui) {
     extrasMenu.funct = function(menuManager, parent) {
         oldExtrasFunct.apply(this, arguments);
         ui.menus.addMenuItems(menuManager, ['-'], parent);
-        ui.menus.addSubmenu('drawWinismSubmenu', menuManager, parent, 'DrawWinism 🧬');
+        ui.menus.addSubmenu('drawVinismSubmenu', menuManager, parent, 'DrawVinism 🧬');
     };
 });
