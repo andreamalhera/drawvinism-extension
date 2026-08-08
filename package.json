@@ -1,0 +1,10 @@
+{
+  "name": "drawvinism-extension",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Persistent, per-file version control for draw.io models",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "postinstall": "sh scripts/install-hooks.sh"
+  }
+}

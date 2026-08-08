@@ -5,9 +5,15 @@
   "description": "Survival of the fittest diagram: Embedded revision tracking for FAIR-compliant scientific modeling.",
   "content_scripts": [
     {
-      "matches": ["https://app.diagrams.net/*"],
+      "matches": [
+        "https://app.diagrams.net/*",
+        "https://*.diagrams.net/*",
+        "https://*.draw.io/*"
+        ],
       "js": ["content.js"],
-      "run_at": "document_end"
+      "run_at": "document_end",
+			"all_frames": true,
+      "world": "MAIN"
     }
   ],
   "permissions": []
